@@ -1,5 +1,5 @@
 import pytest
-from bot.commands import parse_command, handle_command, format_uptime, YOUTUBE_URL
+from bot.commands import parse_command, handle_command, format_uptime, YOUTUBE_URL, DISCORD_URL
 from datetime import datetime, timedelta, timezone
 
 
@@ -27,6 +27,10 @@ def test_comms_lists_commands():
 
 def test_youtube_gives_link():
     assert YOUTUBE_URL in handle_command("!youtube", "viewer123")
+
+
+def test_discord_gives_link():
+    assert DISCORD_URL in handle_command("!discord", "viewer123")
 
 
 def test_commands_ignore_caps():
