@@ -2,6 +2,7 @@ from bot.rules import normalize_text
 from datetime import datetime, timezone
 
 YOUTUBE_URL = "https://www.youtube.com/@reshi-r%C3%B8m"
+DISCORD_URL = "https://discord.gg/xgx4nNSuw2"
 stream_started_at = None
 
 
@@ -29,6 +30,9 @@ def cmd_youtube(username, args):
     """Sends YT channel link"""
     return f"Enjoying the content? Then check out Reshi's Youtube Channel for more!: {YOUTUBE_URL}"
 
+def cmd_discord(username, args):
+    """Send Discord link"""
+    return f"Like talking to Reshi? Why not join the Discord: {DISCORD_URL}"
 
 
 def handle_command(text, username):
@@ -64,10 +68,10 @@ def cmd_uptime(username, args):
 
 
 
-
 COMMANDS = {
     "comms": cmd_comms,
     "youtube": cmd_youtube,
     "uptime": cmd_uptime,
+    "discord": cmd_discord,
 }
 
