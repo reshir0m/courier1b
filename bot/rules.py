@@ -1,5 +1,6 @@
 LINK_POSTERS = ["reshir0m", "courier_ai"]
 DOMAIN_ENDINGS = [".com", ".tv", ".gg", ".net", ".org", ".io", ".co", ".ly"]
+AUTO_APPROVE_CATEGORIES = []
 PUNCTUATION = ".,!?;:()[]\"'"
 
 # Text cleanup
@@ -66,4 +67,11 @@ def carry_out(action, username, reason):
         print(f"Deleted a message from {username}: {reason}")
 
 
-# Only prints if all checks passed
+def decide_automod(text, category, blocked_terms=(), approve_categories=()):
+    """Return (action, reason) for held Automod message. No side effects."""
+    cleaned = normalize_text(text)
+    if contains_blocked_term(cleaned, blocked_terms):
+        return "deny_and_ban", "used a blocked term"
+    if category in approve_categories:
+        return "approve", f"only {category}"
+    return "review", "left for human mod"
