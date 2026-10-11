@@ -35,6 +35,7 @@ def test_discord_gives_link():
 
 def test_commands_ignore_caps():
     assert YOUTUBE_URL in handle_command("!YouTube", "viewer123")
+    assert DISCORD_URL in handle_command("!Discord", "viewer123")
 
 
 def test_unknown_command_ignored():
