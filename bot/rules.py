@@ -1,4 +1,4 @@
-LINK_POSTERS = ["reshir0m", "courier1b"]
+LINK_POSTERS = ["reshir0m", "courier_ai"]
 DOMAIN_ENDINGS = [".com", ".tv", ".gg", ".net", ".org", ".io", ".co", ".ly"]
 PUNCTUATION = ".,!?;:()[]\"'"
 
