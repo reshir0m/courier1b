@@ -1,5 +1,5 @@
 import pytest
-from bot.rules import clean_username, normalize_text, contains_link, can_post_links, decide_action
+from bot.rules import clean_username, normalize_text, contains_link, can_post_links, decide_action, decide_automod
 
 TEST_TERMS = ["badword1", "badword2"]
 
@@ -59,4 +59,15 @@ def test_decide_action_links(message, username, expected):
 ])
 def test_decide_action_blocklist(message, expected):
     action, reason = decide_action(message, "randomviewer", TEST_TERMS)
+    assert action == expected
+
+
+@pytest.mark.parametrize("text, category, expected", [
+    ("you are a badword1", None, "deny_and_ban"),
+    ("badword1", "swearing", "deny_and_ban"),
+    ("damn this is great", "swearing", "approve"),
+    ("you fucking suck", "bullying", "review"),
+])
+def test_decide_automod(text, category, expected):
+    action, reason = decide_automod(text, category, TEST_TERMS, ["swearing"])
     assert action == expected
